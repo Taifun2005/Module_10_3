@@ -38,14 +38,13 @@ import threading
 import random
 import time
 
-counter = 0
-lock = threading.Lock
+# counter = 0
+lock = threading.Lock()
 
 class Bank:
-    def __innit__(self, balance, lock):
-        threading.Thread.__init__(self)
-        self.balance = balance
-        # self.lock = lock
+    def __init__(self):
+        self.balance = 0
+        self.lock = threading.Lock()
 
     def deposit(self):
         for i in range(100):
@@ -53,7 +52,7 @@ class Bank:
             self.balance += summ
             if self.balance >= 500 and lock.locked():
                 lock.release()
-            print(f"Пополнение: {i}. Баланс: {self.balance}")
+            print(f"Пополнение: {summ}. Баланс: {self.balance}")
         time.sleep(0.001)
 
     def take(self):
